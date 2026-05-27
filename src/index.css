@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --amarelo-suave: #FFF159;
+  --azul-escuro: #2D3277;
+  --roxo-banner: #4B0082;
+  --branco: #FFFFFF;
+  --cinza-fundo: #EBEBEB;
+  --cinza-borda: #E5E5E5;
+  --cinza-texto: #666666;
+  --cinza-escuro: #333333;
+  --verde-promocao: #00A650;
+  --azul-link: #3483FA;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--cinza-fundo);
+  color: var(--cinza-escuro);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Utilitários */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.btn-primary {
+  background-color: var(--azul-link);
+  color: var(--branco);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background-color: #2968c8;
+}
+
+.btn-secondary {
+  background-color: rgba(65, 137, 230, 0.15);
+  color: var(--azul-link);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+
+.badge-discount {
+  background-color: var(--verde-promocao);
+  color: var(--branco);
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.loja-oficial {
+  background-color: var(--cinza-fundo);
+  color: var(--cinza-texto);
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.mobile-only {
+  display: none !important;
+}
+
+.product-detail-layout {
+  display: flex;
+  gap: 40px;
+  background-color: var(--branco);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.product-images-layout {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+}
+
+.cart-layout {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+/* Regras para Celulares e Tablets */
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block !important;
+  }
+  
+  .desktop-only {
+    display: none !important;
+  }
+
+  /* Empilha as colunas na página de produto */
+  .product-detail-layout {
+    flex-direction: column;
+    padding: 15px;
+    gap: 20px;
+  }
+
+  /* Muda as miniaturas de lado para baixo no celular */
+  .product-images-layout {
+    flex-direction: column-reverse;
+  }
+
+  .product-images-layout > div:first-child {
+    flex-direction: row !important;
+    justify-content: center;
+    overflow-x: auto;
+  }
+
+  /* Empilha as colunas do carrinho */
+  .cart-layout {
+    flex-direction: column;
+  }
+
+  /* Ajustes gerais de grid */
+  .grid-mobile-1 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .grid-mobile-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
