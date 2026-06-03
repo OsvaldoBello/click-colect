@@ -23,7 +23,7 @@ function Cart() {
       
       <div style={{ display: 'flex', gap: '30px', alignItems: 'flex-start' }}>
         
-        {/* Lista de Produtos */}
+        {}
         <div style={{ flex: 2, backgroundColor: 'var(--branco)', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
           {cart.map((item) => (
             <div key={item.cartItemId} style={{ display: 'flex', gap: '20px', padding: '20px 0', borderBottom: '1px solid var(--cinza-borda)' }}>
@@ -53,7 +53,7 @@ function Cart() {
           ))}
         </div>
 
-        {/* Resumo da Compra */}
+        {}
         <div style={{ flex: 1, backgroundColor: 'var(--branco)', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', position: 'sticky', top: '20px' }}>
           <h3 style={{ fontSize: '18px', color: 'var(--cinza-escuro)', marginBottom: '20px' }}>Resumo da compra</h3>
           

@@ -6,7 +6,7 @@ function Search() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get('q') || '';
 
-  // Transforma a busca e os campos do produto em minúsculas para comparar com facilidade
+  
   const lowerCaseQuery = query.toLowerCase();
   
   const searchResults = products.filter(product => 

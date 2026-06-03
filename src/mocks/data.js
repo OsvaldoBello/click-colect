@@ -209,7 +209,7 @@ export const products = [
         officialStore: true
     },
 
-    // MODA
+    
 
     {
         id: 11,
@@ -493,9 +493,9 @@ export const products = [
         discountPrice: 2899.00,
         discountPercent: 27,
         images: [
-            "https://images.unsplash.com/photo-1571019613914-85f342c55f55?auto=format&fit=crop&w=500&q=80",
-            "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=500&q=80",
-            "https://images.unsplash.com/photo-1518611012118-fb4c7d8acb0d?auto=format&fit=crop&w=500&q=80"
+            "https://images.unsplash.com/photo-1578762560072-46cf12e052ea?auto=format&fit=crop&w=500&q=80",
+            "https://images.unsplash.com/photo-1597076537557-41877b8f4cef?auto=format&fit=crop&w=500&q=80",
+            "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=500&q=80"
         ],
         installments: "12x de R$ 241,58",
         freeShipping: true,
@@ -703,9 +703,9 @@ export const products = [
         discountPrice: 29.00,
         discountPercent: 41,
         images: [
-            "https://images.unsplash.com/photo-1603162525937-6b4b52f63c6b?auto=format&fit=crop&w=500&q=80",
-            "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=500&q=80",
-            "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=500&q=80"
+            "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=500&q=80",
+            "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=500&q=80",
+            "https://images.unsplash.com/photo-1560942485-b2a11cc13456?auto=format&fit=crop&w=500&q=80"
         ],
         installments: "1x de R$ 29,00",
         freeShipping: false,
@@ -944,6 +944,111 @@ export const products = [
         condition: "Novo",
         rating: 4.9,
         reviews: 4100,
+        officialStore: true
+    },
+
+    {
+        id: 46,
+        title: "Garrafa Térmica Inox Premium 1 Litro",
+        category: "Esportes",
+        price: 199.00,
+        discountPrice: 129.00,
+        discountPercent: 35,
+        images: [
+            "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=500&q=80",
+            "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=500&q=80",
+            "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=500&q=80"
+        ],
+        installments: "6x de R$ 21,50",
+        freeShipping: false,
+        sameDayDelivery: true,
+        condition: "Novo",
+        rating: 4.8,
+        reviews: 1640,
+        officialStore: false
+    },
+
+    {
+        id: 47,
+        title: "Caixa de Som Bluetooth Pro Sound à Prova D'água",
+        category: "Eletrônicos",
+        price: 399.00,
+        discountPrice: 249.00,
+        discountPercent: 37,
+        images: [
+            "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=500&q=80",
+            "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=500&q=80",
+            "https://images.unsplash.com/photo-1610483178766-82f254e4df9c?auto=format&fit=crop&w=500&q=80"
+        ],
+        installments: "8x de R$ 31,12",
+        freeShipping: true,
+        sameDayDelivery: true,
+        condition: "Novo",
+        rating: 4.7,
+        reviews: 2150,
+        officialStore: true
+    },
+
+    {
+        id: 48,
+        title: "Camiseta Masculina Algodão Egípcio Minimalista",
+        category: "Moda",
+        price: 129.00,
+        discountPrice: 89.00,
+        discountPercent: 31,
+        images: [
+            "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=500&q=80",
+            "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=500&q=80",
+            "https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=500&q=80"
+        ],
+        installments: "4x de R$ 22,25",
+        freeShipping: false,
+        sameDayDelivery: true,
+        condition: "Novo",
+        rating: 4.9,
+        reviews: 3200,
+        officialStore: false
+    },
+
+    {
+        id: 49,
+        title: "Robô Aspirador de Pó Inteligente Wi-Fi com Mapeamento",
+        category: "Casa e Decoração",
+        price: 1599.00,
+        discountPrice: 1099.00,
+        discountPercent: 31,
+        images: [
+            "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=500&q=80",
+            "https://images.unsplash.com/photo-1569698206670-aa59dbfd34ae?auto=format&fit=crop&w=500&q=80",
+            "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=500&q=80"
+        ],
+        installments: "12x de R$ 91,58",
+        freeShipping: true,
+        sameDayDelivery: false,
+        condition: "Novo",
+        rating: 4.8,
+        reviews: 890,
+        officialStore: true
+    },
+
+    {
+        id: 50,
+        title: "Barbeador e Aparador de Pelos Elétrico Professional",
+        category: "Beleza",
+        price: 299.00,
+        discountPrice: 179.00,
+        discountPercent: 40,
+        images: [
+            "https://images.unsplash.com/photo-1621607512214-68297480165e?auto=format&fit=crop&w=500&q=80",
+            "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=500&q=80",
+            "https://images.unsplash.com/photo-1621607512411-f8e121eb8391?auto=format&fit=crop&w=500&q=80"
+        ],
+        installments: "6x de R$ 29,83",
+        freeShipping: true,
+        sameDayDelivery: true,
+        condition: "Novo",
+        rating: 4.6,
+        reviews: 1420,
         officialStore: true
     }
 

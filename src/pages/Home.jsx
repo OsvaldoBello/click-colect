@@ -1,12 +1,35 @@
+import { useState, useEffect } from "react";
 import { products } from "../mocks/data";
 import ProductCard from "../components/ProductCard";
 import { Truck, ShieldCheck, Undo2, CreditCard } from "lucide-react";
 
 function Home() {
+  const [timeLeft, setTimeLeft] = useState(45932); 
+  const [selectedCategory, setSelectedCategory] = useState("Todos");
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 45932));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatTime = (totalSeconds) => {
+    const hrs = Math.floor(totalSeconds / 3600);
+    const mins = Math.floor((totalSeconds % 3600) / 60);
+    const secs = totalSeconds % 60;
+    return `${hrs.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  };
+
+  const categories = ["Todos", "Eletrônicos", "Moda", "Casa e Decoração", "Esportes", "Beleza"];
+
+  const filteredProducts = selectedCategory === "Todos"
+    ? products
+    : products.filter(p => p.category.toLowerCase() === selectedCategory.toLowerCase());
   return (
     <div style={{ paddingBottom: "50px" }}>
       
-      {/* Hero Banner (NOVO DESIGN) */}
+      {}
       <div className="container" style={{ paddingTop: '20px', paddingBottom: '40px' }}>
         <div style={{ 
           backgroundColor: 'var(--roxo-banner)', 
@@ -17,7 +40,7 @@ function Home() {
           boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
         }}>
           
-          {/* Coluna Esquerda: Textos e Botão */}
+          {}
           <div style={{ flex: 1, minWidth: '300px', padding: '50px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
             <span style={{ 
               backgroundColor: 'var(--amarelo-suave)', 
@@ -62,15 +85,15 @@ function Home() {
             </button>
           </div>
 
-          {/* Coluna Direita: Imagem de Destaque */}
+          {}
           <div style={{ flex: 1, minWidth: '300px', position: 'relative' }}>
-            {/* Imagem genérica de presentes/promoção do Unsplash (combinando com a paleta) */}
+            {}
             <img 
               src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?auto=format&fit=crop&w=800&q=80" 
               alt="Promoção Mês do Consumidor" 
               style={{ width: '100%', height: '100%', objectFit: 'cover', minHeight: '300px' }} 
             />
-            {/* Overlay sutil roxo para integrar a imagem com o banner */}
+            {}
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'var(--roxo-banner)', opacity: 0.2 }}></div>
           </div>
 
@@ -78,7 +101,7 @@ function Home() {
       </div>
 
       <div className="container">
-        {/* Benefícios */}
+        {}
         <div className="grid-mobile-2"
           style={{
             display: "grid",
@@ -111,6 +134,7 @@ function Home() {
           ].map((benefit, i) => (
             <div
               key={i}
+              className="benefit-card"
               style={{
                 backgroundColor: "var(--branco)",
                 padding: "25px",
@@ -124,6 +148,7 @@ function Home() {
               }}
             >
               <div
+                className="icon-container"
                 style={{
                   backgroundColor: "var(--amarelo-suave)",
                   padding: "15px",
@@ -142,14 +167,27 @@ function Home() {
           ))}
         </div>
 
-        {/* Ofertas do Dia */}
+        {}
         <div id="ofertas-do-dia" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingTop: '20px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <h2 style={{ fontSize: '24px', color: 'var(--cinza-escuro)', fontWeight: '600' }}>Ofertas do dia</h2>
           </div>
-          <div style={{ backgroundColor: 'var(--azul-escuro)', color: 'var(--branco)', padding: '6px 12px', borderRadius: '20px', fontSize: '14px', fontWeight: 'bold' }}>
-            Termina em: 12:45:32
+          <div style={{ backgroundColor: 'var(--azul-escuro)', color: 'var(--branco)', padding: '6px 12px', borderRadius: '20px', fontSize: '14px', fontWeight: 'bold', minWidth: "160px", textAlign: "center" }}>
+            Termina em: {formatTime(timeLeft)}
           </div>
+        </div>
+
+        {}
+        <div style={{ display: "flex", gap: "12px", overflowX: "auto", paddingBottom: "15px", marginBottom: "25px", scrollbarWidth: "none" }}>
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`category-tab ${selectedCategory === cat ? "active" : ""}`}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
 
         <div className="grid-mobile-2"
@@ -159,7 +197,7 @@ function Home() {
             gap: "20px",
           }}
         >
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

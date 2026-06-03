@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import { Heart, Truck, Star } from "lucide-react";
+import { useFavorites } from "../context/FavoritesContext";
 
 function ProductCard({ product }) {
+  const { toggleFavorite, isFavorite } = useFavorites();
+  const favorited = isFavorite(product.id);
+
   return (
     <Link
       to={`/produto/${product.id}`}
@@ -16,27 +20,37 @@ function ProductCard({ product }) {
       }}
       className="product-card"
     >
-      {/* Badges Flutuantes */}
+      {}
       <div
         style={{ position: "absolute", top: "10px", left: "10px", zIndex: 1 }}
       >
         <span className="badge-discount">{product.discountPercent}% OFF</span>
       </div>
       <div
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleFavorite(product.id);
+        }}
         style={{
           position: "absolute",
           top: "10px",
           right: "10px",
-          zIndex: 1,
-          backgroundColor: "rgba(255,255,255,0.8)",
+          zIndex: 2,
+          backgroundColor: "rgba(255,255,255,0.9)",
           borderRadius: "50%",
-          padding: "5px",
+          padding: "6px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+          cursor: "pointer",
         }}
       >
-        <Heart size={20} color="var(--cinza-texto)" cursor="pointer" />
+        <Heart size={18} fill={favorited ? "#E02424" : "none"} color={favorited ? "#E02424" : "var(--cinza-texto)"} />
       </div>
 
-      {/* Imagem */}
+      {}
       <div
         style={{
           height: "220px",
@@ -44,14 +58,16 @@ function ProductCard({ product }) {
           borderBottom: "1px solid var(--cinza-fundo)",
         }}
       >
-        <img
-          src={product.images[0]}
-          alt={product.title}
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
+        <div className="product-image-container">
+          <img
+            src={product.images[0]}
+            alt={product.title}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        </div>
       </div>
 
-      {/* Info */}
+      {}
       <div style={{ padding: "15px" }}>
         <h3
           style={{

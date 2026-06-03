@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
-// Componente do Ícone do Google
+
 const GoogleIcon = () => (
   <svg
     width="20"
@@ -31,11 +32,20 @@ const GoogleIcon = () => (
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Lógica futura de autenticação
-    console.log("Login com:", email, password);
+    setError("");
+    try {
+      await login(email.trim(), password);
+      navigate("/");
+    } catch (err) {
+      setError(err.message || "Erro ao fazer login.");
+    }
   };
 
   return (
@@ -82,6 +92,12 @@ function Login() {
           </p>
         </div>
 
+        {error && (
+          <div style={{ color: "#E02424", backgroundColor: "#FDF2F2", padding: "12px", borderRadius: "4px", fontSize: "14px", border: "1px solid #FBD5D5", marginBottom: "20px", textAlign: "center", fontWeight: "500" }}>
+            {error}
+          </div>
+        )}
+
         <form
           onSubmit={handleLogin}
           style={{ display: "flex", flexDirection: "column", gap: "20px" }}
@@ -107,7 +123,7 @@ function Login() {
                 width: "100%",
                 padding: "12px",
                 border: "1px solid var(--cinza-borda)",
-                borderRadius: "4px",
+                borderRadius: "8px",
                 fontSize: "16px",
                 outline: "none",
               }}
@@ -135,7 +151,7 @@ function Login() {
                 width: "100%",
                 padding: "12px",
                 border: "1px solid var(--cinza-borda)",
-                borderRadius: "4px",
+                borderRadius: "8px",
                 fontSize: "16px",
                 outline: "none",
               }}
@@ -175,60 +191,7 @@ function Login() {
           </button>
         </form>
 
-        <div
-          style={{ display: "flex", alignItems: "center", margin: "20px 0" }}
-        >
-          <div
-            style={{
-              flex: 1,
-              height: "1px",
-              backgroundColor: "var(--cinza-borda)",
-            }}
-          ></div>
-          <span
-            style={{
-              padding: "0 10px",
-              color: "var(--cinza-texto)",
-              fontSize: "14px",
-            }}
-          >
-            ou
-          </span>
-          <div
-            style={{
-              flex: 1,
-              height: "1px",
-              backgroundColor: "var(--cinza-borda)",
-            }}
-          ></div>
-        </div>
 
-        <button
-          style={{
-            width: "100%",
-            padding: "12px",
-            backgroundColor: "var(--branco)",
-            border: "1px solid var(--cinza-borda)",
-            borderRadius: "4px",
-            fontSize: "16px",
-            fontWeight: "600",
-            color: "var(--cinza-escuro)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "10px",
-            cursor: "pointer",
-            transition: "background 0.2s",
-          }}
-          onMouseEnter={(e) =>
-            (e.currentTarget.style.backgroundColor = "var(--cinza-fundo)")
-          }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.backgroundColor = "var(--branco)")
-          }
-        >
-          <GoogleIcon /> Continuar com Google
-        </button>
 
         <p
           style={{

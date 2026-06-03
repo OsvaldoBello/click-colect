@@ -30,7 +30,7 @@ a {
   color: inherit;
 }
 
-/* Utilitários */
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -110,7 +110,7 @@ a {
   align-items: flex-start;
 }
 
-/* Regras para Celulares e Tablets */
+
 @media (max-width: 768px) {
   .mobile-only {
     display: block !important;
@@ -120,14 +120,14 @@ a {
     display: none !important;
   }
 
-  /* Empilha as colunas na página de produto */
+  
   .product-detail-layout {
     flex-direction: column;
     padding: 15px;
     gap: 20px;
   }
 
-  /* Muda as miniaturas de lado para baixo no celular */
+  
   .product-images-layout {
     flex-direction: column-reverse;
   }
@@ -138,12 +138,12 @@ a {
     overflow-x: auto;
   }
 
-  /* Empilha as colunas do carrinho */
+  
   .cart-layout {
     flex-direction: column;
   }
 
-  /* Ajustes gerais de grid */
+  
   .grid-mobile-1 {
     grid-template-columns: 1fr !important;
   }
@@ -151,4 +151,89 @@ a {
   .grid-mobile-2 {
     grid-template-columns: repeat(2, 1fr) !important;
   }
+}
+
+
+.product-card {
+  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12), 0 5px 15px rgba(0, 0, 0, 0.08) !important;
+}
+
+.product-image-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.product-image-container img {
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+.product-card:hover .product-image-container img {
+  transform: scale(1.08);
+}
+
+
+.category-tab {
+  padding: 10px 20px;
+  background-color: var(--branco);
+  border: 1px solid var(--cinza-borda);
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cinza-texto);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  white-space: nowrap;
+  outline: none;
+}
+
+.category-tab:hover {
+  background-color: var(--cinza-fundo);
+  color: var(--azul-escuro);
+  border-color: var(--cinza-texto);
+}
+
+.category-tab.active {
+  background-color: var(--azul-escuro);
+  color: var(--amarelo-suave);
+  border-color: var(--azul-escuro);
+  box-shadow: 0 4px 10px rgba(45, 50, 119, 0.2);
+}
+
+
+.benefit-card {
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  cursor: default;
+}
+
+.benefit-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+}
+
+.benefit-card .icon-container {
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.benefit-card:hover .icon-container {
+  transform: scale(1.1) rotate(5deg);
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }

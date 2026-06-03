@@ -1,9 +1,10 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { products } from "../mocks/data";
-import { Star, Truck } from "lucide-react";
+import { Star, Truck, MapPin } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import ProductCard from "../components/ProductCard";
 import { useState, useEffect } from "react";
+import { useAlert } from "../context/AlertContext";
 
 function ProductDetail() {
   const { id } = useParams();
@@ -12,8 +13,13 @@ function ProductDetail() {
   const [selectedImage, setSelectedImage] = useState(() => product.images[0]);
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [cep, setCep] = useState("");
+  const [shippingResult, setShippingResult] = useState(null);
+  const [shippingError, setShippingError] = useState("");
 
   const { addToCart } = useCart();
+  const { showAlert } = useAlert();
+  const navigate = useNavigate();
 
   const relatedProducts = products.filter(
     (p) => p.category === product.category && p.id !== product.id,
@@ -21,11 +27,53 @@ function ProductDetail() {
 
   const handleAddToCart = () => {
     if (product.category === "Moda" && !selectedSize) {
-      alert("Por favor, selecione um tamanho antes de adicionar ao carrinho.");
+      showAlert("Por favor, selecione um tamanho antes de adicionar ao carrinho.", "warning");
       return;
     }
     addToCart(product, quantity, selectedSize);
-    alert("Produto adicionado ao carrinho com sucesso!");
+    showAlert("Produto adicionado ao carrinho com sucesso!", "success");
+  };
+
+  const handleBuyNow = () => {
+    if (product.category === "Moda" && !selectedSize) {
+      showAlert("Por favor, selecione um tamanho antes de comprar.", "warning");
+      return;
+    }
+    addToCart(product, quantity, selectedSize);
+    navigate("/checkout");
+  };
+
+  const handleCalculateShipping = () => {
+    setShippingError("");
+    setShippingResult(null);
+    const cleanCep = cep.replace(/\D/g, "");
+    if (cleanCep.length !== 8) {
+      setShippingError("CEP inválido. Digite 8 números.");
+      return;
+    }
+
+    const firstDigit = cleanCep[0];
+    if (firstDigit === "0" || firstDigit === "1") {
+      setShippingResult({
+        price: "Grátis",
+        time: "2 dias úteis",
+        store: "Disponível para Click & Collect nas Lojas Centro, Paulista e Pinheiros"
+      });
+    } else {
+      setShippingResult({
+        price: "R$ 15,90",
+        time: "5 a 7 dias úteis",
+        store: "Disponível para Click & Collect nas Lojas Regionais em até 4 dias"
+      });
+    }
+  };
+
+  const handleCepChange = (e) => {
+    let val = e.target.value.replace(/\D/g, "");
+    if (val.length > 5) {
+      val = val.substring(0, 5) + "-" + val.substring(5, 8);
+    }
+    setCep(val.substring(0, 9));
   };
 
   useEffect(() => {
@@ -33,6 +81,9 @@ function ProductDetail() {
       setSelectedImage(product.images[0]);
       setQuantity(1);
       setSelectedSize("");
+      setShippingResult(null);
+      setShippingError("");
+      setCep("");
       window.scrollTo({ top: 0, behavior: "smooth" });
     }, 0);
     return () => clearTimeout(t);
@@ -162,7 +213,7 @@ function ProductDetail() {
                 fontSize: "16px",
               }}
             >
-              R$ {product.price.toFixed(2)}
+              R$ {(product.price * quantity).toFixed(2)}
             </span>
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <span
@@ -172,7 +223,7 @@ function ProductDetail() {
                   fontWeight: "300",
                 }}
               >
-                R$ {product.discountPrice.toFixed(2)}
+                R$ {(product.discountPrice * quantity).toFixed(2)}
               </span>
               <span
                 style={{ color: "var(--verde-promocao)", fontWeight: "bold" }}
@@ -281,7 +332,7 @@ function ProductDetail() {
               marginTop: "20px",
             }}
           >
-            <button className="btn-primary">Comprar agora</button>
+            <button className="btn-primary" onClick={handleBuyNow}>Comprar agora</button>
             <button className="btn-secondary" onClick={handleAddToCart}>
               Adicionar ao carrinho
             </button>
@@ -322,6 +373,8 @@ function ProductDetail() {
               <input
                 type="text"
                 placeholder="Digite seu CEP"
+                value={cep}
+                onChange={handleCepChange}
                 style={{
                   flex: 1,
                   padding: "10px",
@@ -331,6 +384,7 @@ function ProductDetail() {
                 }}
               />
               <button
+                onClick={handleCalculateShipping}
                 style={{
                   padding: "10px 20px",
                   background: "transparent",
@@ -343,6 +397,24 @@ function ProductDetail() {
                 Calcular
               </button>
             </div>
+
+            {shippingError && (
+              <p style={{ color: "#E02424", fontSize: "13px", marginTop: "12px", fontWeight: "500" }}>{shippingError}</p>
+            )}
+
+            {shippingResult && (
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "15px", paddingTop: "15px", borderTop: "1px solid var(--cinza-borda)" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span style={{ fontSize: "14px", fontWeight: "600", color: "var(--cinza-escuro)" }}>Envio Normal</span>
+                  <span style={{ fontSize: "14px", fontWeight: "bold", color: "var(--verde-promocao)" }}>{shippingResult.price}</span>
+                </div>
+                <p style={{ fontSize: "13px", color: "var(--cinza-texto)", margin: 0 }}>Prazo de entrega: {shippingResult.time}</p>
+                <div style={{ display: "flex", gap: "8px", alignItems: "flex-start", marginTop: "5px", padding: "12px", backgroundColor: "var(--cinza-fundo)", borderRadius: "4px" }}>
+                  <MapPin size={16} style={{ color: "var(--azul-link)", flexShrink: 0, marginTop: "2px" }} />
+                  <p style={{ fontSize: "12px", color: "var(--cinza-escuro)", margin: 0, lineHeight: "1.4" }}>{shippingResult.store}</p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -1,11 +1,18 @@
-/* eslint-disable react-refresh/only-export-components */
-import { createContext, useState, useContext } from 'react';
-// Cria o contexto
+
+import { createContext, useState, useContext, useEffect } from 'react';
+
 const CartContext = createContext();
 
-// Provider que vai envolver a aplicação
+
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    const saved = localStorage.getItem("click_colect_cart");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("click_colect_cart", JSON.stringify(cart));
+  }, [cart]);
 
   const addToCart = (product, quantity, size = '') => {
     setCart((prevCart) => {
@@ -40,13 +47,13 @@ export function CartProvider({ children }) {
   const cartTotal = cart.reduce((acc, item) => acc + (item.discountPrice * item.quantity), 0);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, cartCount, cartTotal }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, cartCount, cartTotal, setCart }}>
       {children}
     </CartContext.Provider>
   );
 }
 
-// Hook customizado para facilitar o uso
+
 export function useCart() {
   return useContext(CartContext);
 }
