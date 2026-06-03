@@ -58,16 +58,7 @@ function Login() {
         padding: "20px",
       }}
     >
-      <div
-        style={{
-          backgroundColor: "var(--branco)",
-          padding: "40px",
-          borderRadius: "8px",
-          boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
-          width: "100%",
-          maxWidth: "400px",
-        }}
-      >
+      <div className="auth-card">
         <div style={{ textAlign: "center", marginBottom: "30px" }}>
           <h2
             style={{

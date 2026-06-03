@@ -223,19 +223,19 @@ function Checkout() {
       
       {}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", marginBottom: "40px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <div className="checkout-step-container" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <span style={{ width: "28px", height: "28px", borderRadius: "50%", backgroundColor: step >= 1 ? "var(--azul-link)" : "#ccc", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", fontWeight: "bold" }}>1</span>
-          <span style={{ fontSize: "14px", fontWeight: step === 1 ? "bold" : "500", color: step === 1 ? "var(--cinza-escuro)" : "var(--cinza-texto)" }}>Envio</span>
+          <span className="checkout-progress-text" style={{ fontSize: "14px", fontWeight: step === 1 ? "bold" : "500", color: step === 1 ? "var(--cinza-escuro)" : "var(--cinza-texto)" }}>Envio</span>
         </div>
         <div style={{ width: "60px", height: "2px", backgroundColor: step >= 2 ? "var(--azul-link)" : "#ccc" }}></div>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <div className="checkout-step-container" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <span style={{ width: "28px", height: "28px", borderRadius: "50%", backgroundColor: step >= 2 ? "var(--azul-link)" : "#ccc", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", fontWeight: "bold" }}>2</span>
-          <span style={{ fontSize: "14px", fontWeight: step === 2 ? "bold" : "500", color: step === 2 ? "var(--cinza-escuro)" : "var(--cinza-texto)" }}>Pagamento</span>
+          <span className="checkout-progress-text" style={{ fontSize: "14px", fontWeight: step === 2 ? "bold" : "500", color: step === 2 ? "var(--cinza-escuro)" : "var(--cinza-texto)" }}>Pagamento</span>
         </div>
         <div style={{ width: "60px", height: "2px", backgroundColor: step >= 3 ? "var(--azul-link)" : "#ccc" }}></div>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <div className="checkout-step-container" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <span style={{ width: "28px", height: "28px", borderRadius: "50%", backgroundColor: step >= 3 ? "var(--verde-promocao)" : "#ccc", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", fontWeight: "bold" }}>3</span>
-          <span style={{ fontSize: "14px", fontWeight: step === 3 ? "bold" : "500", color: step === 3 ? "var(--cinza-escuro)" : "var(--cinza-texto)" }}>Confirmação</span>
+          <span className="checkout-progress-text" style={{ fontSize: "14px", fontWeight: step === 3 ? "bold" : "500", color: step === 3 ? "var(--cinza-escuro)" : "var(--cinza-texto)" }}>Confirmação</span>
         </div>
       </div>
 
@@ -246,7 +246,7 @@ function Checkout() {
           
           {}
           {step === 1 && (
-            <div style={{ backgroundColor: "var(--branco)", padding: "30px", borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+            <div className="checkout-card">
               <h2 style={{ fontSize: "20px", color: "var(--cinza-escuro)", marginBottom: "20px", fontWeight: "600" }}>Opções de Entrega</h2>
               
               <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
@@ -367,7 +367,7 @@ function Checkout() {
 
           {}
           {step === 2 && (
-            <div style={{ backgroundColor: "var(--branco)", padding: "30px", borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+            <div className="checkout-card">
               
               {}
               <button 
@@ -607,7 +607,7 @@ function Checkout() {
 
           {}
           {step === 3 && (
-            <div style={{ backgroundColor: "var(--branco)", padding: "40px 30px", borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.06)", textAlign: "center" }}>
+            <div className="checkout-card" style={{ textAlign: "center" }}>
               <CheckCircle2 size={64} color="var(--verde-promocao)" style={{ marginBottom: "20px" }} />
               
               <h2 style={{ color: "var(--cinza-escuro)", fontSize: "24px", fontWeight: "600", marginBottom: "10px" }}>Compra Confirmada com Sucesso!</h2>

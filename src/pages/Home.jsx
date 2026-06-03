@@ -41,7 +41,7 @@ function Home() {
         }}>
           
           {}
-          <div style={{ flex: 1, minWidth: '300px', padding: '50px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
+          <div className="home-banner-text-col" style={{ flex: 1, minWidth: '300px', padding: '50px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
             <span style={{ 
               backgroundColor: 'var(--amarelo-suave)', 
               color: 'var(--azul-escuro)', 
@@ -102,7 +102,7 @@ function Home() {
 
       <div className="container">
         {}
-        <div className="grid-mobile-2"
+        <div className="grid-mobile-2 grid-mobile-2-benefits"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
@@ -168,7 +168,7 @@ function Home() {
         </div>
 
         {}
-        <div id="ofertas-do-dia" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingTop: '20px' }}>
+        <div id="ofertas-do-dia" className="ofertas-header-container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingTop: '20px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <h2 style={{ fontSize: '24px', color: 'var(--cinza-escuro)', fontWeight: '600' }}>Ofertas do dia</h2>
           </div>

@@ -21,12 +21,11 @@ function Cart() {
     <div className="container" style={{ margin: '30px auto' }}>
       <h1 style={{ fontSize: '24px', color: 'var(--cinza-escuro)', marginBottom: '20px' }}>Carrinho de Compras</h1>
       
-      <div style={{ display: 'flex', gap: '30px', alignItems: 'flex-start' }}>
+      <div className="cart-layout">
         
-        {}
         <div style={{ flex: 2, backgroundColor: 'var(--branco)', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
           {cart.map((item) => (
-            <div key={item.cartItemId} style={{ display: 'flex', gap: '20px', padding: '20px 0', borderBottom: '1px solid var(--cinza-borda)' }}>
+            <div key={item.cartItemId} className="cart-item">
               <img src={item.images[0]} alt={item.title} style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '4px' }} />
               
               <div style={{ flex: 1 }}>
@@ -46,14 +45,13 @@ function Cart() {
                 </div>
               </div>
 
-              <div style={{ textAlign: 'right' }}>
+              <div className="cart-item-price">
                 <p style={{ fontSize: '20px', color: 'var(--cinza-escuro)', fontWeight: '600' }}>R$ {(item.discountPrice * item.quantity).toFixed(2)}</p>
               </div>
             </div>
           ))}
         </div>
 
-        {}
         <div style={{ flex: 1, backgroundColor: 'var(--branco)', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', position: 'sticky', top: '20px' }}>
           <h3 style={{ fontSize: '18px', color: 'var(--cinza-escuro)', marginBottom: '20px' }}>Resumo da compra</h3>
           
